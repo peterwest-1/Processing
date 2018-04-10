@@ -6,20 +6,14 @@ PeasyCam cam;
 PImage img;
 PImage smaller;
 
-
-int scl;
+int scl = 16;
 int w, h;
-
 int depth = 60;
-float ang = 0;
-float inc = 0.02;
 
 void setup() {
   size(672, 1024, P3D);
+  
   cam = new PeasyCam(this, 1200);
-
-  scl = 16;
-
   img = loadImage("mona-687-1024.jpg");
   w = img.width/scl;
   h = img.height/scl;
@@ -29,11 +23,10 @@ void setup() {
 }
 
 void draw() {
-
   translate(-width/2, -height/2, 0);
-
   background(20);
   colorMode(HSB, 255);
+  
   smaller.loadPixels();
   for (int x = 0; x < w; x++) {
     for (int y = 0; y < h; y++) {
