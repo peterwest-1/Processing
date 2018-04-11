@@ -6,15 +6,15 @@ PeasyCam cam;
 PImage img;
 PImage smaller;
 
-int scl = 16;
+int scl = 8;
 int w, h;
 int depth = 60;
 
 void setup() {
   size(672, 1024, P3D);
-  
+
   cam = new PeasyCam(this, 1200);
-  img = loadImage("mona-687-1024.jpg");
+  img = loadImage("mona.jpg");
   w = img.width/scl;
   h = img.height/scl;
 
@@ -26,7 +26,7 @@ void draw() {
   translate(-width/2, -height/2, 0);
   background(20);
   colorMode(HSB, 255);
-  
+
   smaller.loadPixels();
   for (int x = 0; x < w; x++) {
     for (int y = 0; y < h; y++) {
@@ -44,6 +44,14 @@ void draw() {
       //rect(x*scl, y*scl, scl, scl);
       box(scl, scl, depth);
       popMatrix();
+    }
+  }
+}
+
+void keyPressed() {
+  if (key == CODED) {
+    if (keyCode == UP) {
+      saveFrame();
     }
   }
 }
