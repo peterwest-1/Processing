@@ -8,13 +8,17 @@ PImage smaller;
 
 int scl = 8;
 int w, h;
-int depth = 60;
+int depth = 80;
+
+float ang = 0;
 
 void setup() {
-  size(672, 1024, P3D);
+  size(600, 800, P3D);
+  lights();
+  smooth();
 
   cam = new PeasyCam(this, 1200);
-  img = loadImage("mona.jpg");
+  img = loadImage("albert-1262-1600.jpg");
   w = img.width/scl;
   h = img.height/scl;
 
@@ -23,9 +27,10 @@ void setup() {
 }
 
 void draw() {
-  translate(-width/2, -height/2, 0);
+
   background(20);
   colorMode(HSB, 255);
+  translate(-width/2, -height/2, 0);
 
   smaller.loadPixels();
   for (int x = 0; x < w; x++) {
@@ -41,17 +46,9 @@ void draw() {
 
       pushMatrix();
       translate(x*scl, y*scl, push);
-      //rect(x*scl, y*scl, scl, scl);
       box(scl, scl, depth);
       popMatrix();
     }
   }
-}
 
-void keyPressed() {
-  if (key == CODED) {
-    if (keyCode == UP) {
-      saveFrame();
-    }
-  }
 }
